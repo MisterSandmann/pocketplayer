@@ -1,0 +1,63 @@
+{
+  "name": "pocketplayer",
+  "version": "1.0.0",
+  "description": "Electron-basierter Musikplayer im Tapedeck-Stil, entwickelt von Spaceboy & Archie.",
+  "author": "Spaceboy & Archie",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+  "appId": "com.spaceboy.pocketplayer",
+  "productName": "Pocketplayer",
+  "directories": {
+    "buildResources": "assets",
+    "output": "dist"
+  },
+  "files": [
+    {
+      "from": "app",
+      "to": "app"
+    },
+    {
+      "from": "assets",
+      "to": "assets"
+    },
+    "main.js",
+    "preload.js",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "assets/songs",
+      "to": "assets/songs"
+    }
+  ],
+  "asar": true,
+  "asarUnpack": [
+    "preload.js",
+    "app/**/*",
+    "assets/**/*"
+  ],
+  "win": {
+    "target": "nsis",
+    "icon": "assets/images/app-icon.ico"
+  },
+  "mac": {
+    "target": "dmg",
+    "icon": "assets/images/app-icon.icns"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "assets/images/app-icon.png"
+  }
+},
+  "devDependencies": {
+    "electron": "^38.4.0",
+    "electron-builder": "^26.0.12"
+  }
+}
